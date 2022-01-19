@@ -64,3 +64,7 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 Untuk melakukan migrate data bisa menggunakan
 php artisan migrate atau import dari file school_database.sql
+
+
+Akses data buku: {nama_port}/book
+Akses data penulis buku: {nama_port}/bookAuthor
