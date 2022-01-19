@@ -14,20 +14,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    $data_book = DB::table('book')
-    ->Join('book_writer','book_writer.id','=','book.penulis_id')
-    ->select('book.id','book.nama','book.jenis','book.tahun_terbit','book_writer.penulis')
-    ->get();
-
-    $data_penulis = DB::table('book_writer')
-    ->get();
-
-    return view('bookView.index',['data_book' => $data_book,'data_penulis' => $data_penulis]);
+    return view('home');
 });
 
+Route::get('/dashboard','DashboardController@index');
 Route::get('/book','BookController@index');
-Route::get('/bookAuthor','BookAuthorController@index');
 Route::post('/book/create','BookController@create');
 Route::get('/book/{id}/edit','BookController@edit');
 Route::get('/book/{id}/delete','BookController@delete');
 Route::post('/book/{id}/update','BookController@update');
+Route::get('/bookAuthor','BookAuthorController@index');
+Route::post('/bookAuthor/create','BookAuthorController@create');
+Route::get('/bookAuthor/{id}/edit','BookAuthorController@edit');
+Route::post('/bookAuthor/{id}/update','BookAuthorController@update');
+Route::get('/bookAuthor/{id}/delete','BookAuthorController@delete');
