@@ -1,49 +1,82 @@
 @extends('layout.master')
 
 @section('content')
-    @if(session('sukses'))
-        <div class="alert alert-success" role="alert">
-            {{session('sukses')}}
-        </div>
-        @endif
-        <div class="row">
-            <div class="col-6">
-                <h1>Data Buku</h1>
+    <div class="main">
+        <div class="main-content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Daftar Buku Perpustakaan</h3>
+                                <div class="right">
+                                    <button type="button" class="btn-default" data-toggle="modal" data-target="#addBook"><span class="lnr lnr-plus-circle"></span></button>
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Judul Buku</th>
+                                            <th>Jenis Buku</th>
+                                            <th>Tahun Terbit</th>
+                                            <th>Penulis</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                         @foreach ($data_book as $book)
+                                        <tr>
+                                            <td>{{$book->nama}}</td>
+                                            <td>{{$book->jenis}}</td>
+                                            <td>{{$book->tahun_terbit}}</td>
+                                            <td>{{$book->penulis}}</td>
+                                            <td>
+                                                <a href="/book/{{$book->id}}/edit" class="btn btn-warning btn-sm">Edit</a>
+                                                <a href="/book/{{$book->id}}/delete" class="btn btn-danger btn-sm" onClick="return confirm('Apakah yakin data ingin dihapus ?')">Delete</a>
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+						</div>
+                </div>
             </div>
-            <div class="col-6">
-                <button type="button" class="btn btn-primary btn-sm float-right" data-toggle="modal" data-target="#exampleModal">
-                    Tambah Data Buku
-                </button>
-            </div>
-            <table class="table">
-                <tr>
-                    <th>Judul Buku</th>
-                    <th>Jenis Buku</th>
-                    <th>Tahun Terbit</th>
-                    <th>Penulis</th>
-                    <th>Action</th>
-                </tr>
-                @foreach ($data_book as $book)
-                <tr>
-                    <td>{{$book->nama}}</td>
-                    <td>{{$book->jenis}}</td>
-                    <td>{{$book->tahun_terbit}}</td>
-                    <td>{{$book->penulis}}</td>
-                    <td>
-                        <a href="/book/{{$book->id}}/edit" class="btn btn-warning btn-sm">Edit</a>
-                        <a href="/book/{{$book->id}}/delete" class="btn btn-danger btn-sm" onClick="return confirm('Apakah yakin data ingin dihapus ?')">Delete</a>
-                    </td>
-                </tr>
-                @endforeach
-            </table>
         </div>
     </div>
-<!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+    <div class="modal fade" id="addAuthor" tabindex="-1" aria-labelledby="addAuthorLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal Tambah data</h5>
+                <h5 class="modal-title" id="addAuthorLabel">Modal Tambah data</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+            <form action="/bookAuthor/create" method="POST">
+                {{csrf_field()}}
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Nama Penulis</label>
+                    <input name="penulis" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Masukkan nama Penulis">
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+            </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="addBook" tabindex="-1" aria-labelledby="addBookLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addBookLabel">Modal Tambah data</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
@@ -80,5 +113,7 @@
                 </div>
                 </div>
             </form>
+            </div>
         </div>
-@endsection
+    </div>
+@stop

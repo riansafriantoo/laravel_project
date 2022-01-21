@@ -16,7 +16,10 @@ class BookController extends Controller
 
         $data_penulis = DB::table('book_writer')
         ->get();
-        return view('bookView.index',['data_book' => $data_book,'data_penulis' => $data_penulis]);
+
+        $user = DB::table('users')
+        ->get();
+        return view('bookView.index',['data_book' => $data_book,'data_penulis' => $data_penulis, 'user' => $user]);
     
     }
 

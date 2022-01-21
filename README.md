@@ -68,3 +68,11 @@ php artisan migrate atau import dari file school_database.sql
 
 Akses data buku: {nama_port}/book
 Akses data penulis buku: {nama_port}/bookAuthor
+
+Untuk Login Admin:
+email: admin@admin.com
+password: admin
+
+Untuk Login User:
+email: Rian@email.com
+password: rahasia
