@@ -9,11 +9,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../mystyle.css">
+    <link rel="apple-touch-icon" sizes="76x76" href="{{asset('admin/assets/img/apple-icon.png')}}">
+	<link rel="icon" type="image/png" sizes="96x96" href="{{asset('admin/assets/img/favicon.png')}}">
     <title>Login</title>
 </head>
-<body>
-
-
 <body>
     <div id="login">
         <h3 class="text-center text-white pt-5">Login form</h3>
@@ -45,7 +44,5 @@
             </div>
         </div>
     </div>
-</body>
-
 </body>
 </html>

@@ -46,7 +46,6 @@
             </div>
         </div>
     </div>
-
     <div class="modal fade" id="addAuthor" tabindex="-1" aria-labelledby="addAuthorLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">

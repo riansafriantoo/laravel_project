@@ -9,9 +9,11 @@
                         <div class="panel">
                             <div class="panel-heading">
                                 <h3 class="panel-title">Daftar Buku Perpustakaan</h3>
+                                @if(auth()->user()->role == 'admin')
                                 <div class="right">
                                     <button type="button" class="btn-default" data-toggle="modal" data-target="#addBook"><span class="lnr lnr-plus-circle"></span></button>
                                 </div>
+                                @endif
                             </div>
                             <div class="panel-body">
                                 <table class="table table-hover">
@@ -31,10 +33,17 @@
                                             <td>{{$book->jenis}}</td>
                                             <td>{{$book->tahun_terbit}}</td>
                                             <td>{{$book->penulis}}</td>
+                                            @if(auth()->user()->role == 'admin')
                                             <td>
                                                 <a href="/book/{{$book->id}}/edit" class="btn btn-warning btn-sm">Edit</a>
                                                 <a href="/book/{{$book->id}}/delete" class="btn btn-danger btn-sm" onClick="return confirm('Apakah yakin data ingin dihapus ?')">Delete</a>
                                             </td>
+                                            @else
+                                            <td>
+                                                <a href="/book/{{$book->id}}/edit"  class="btn btn-warning btn-sm disabled" role="button" aria-disabled="true">Edit</a>
+                                                <a href="/book/{{$book->id}}/delete" class="btn btn-danger btn-sm disabled" role="button" aria-disabled="true" onClick="return confirm('Apakah yakin data ingin dihapus ?')">Delete</a>
+                                            </td>
+                                            @endif
                                         </tr>
                                         @endforeach
                                     </tbody>
@@ -46,9 +55,11 @@
                         <div class="panel">
                             <div class="panel-heading">
                                 <h3 class="panel-title">Daftar Penulis buku</h3>
+                                @if(auth()->user()->role == 'admin')
                                 <div class="right">
                                     <button type="button" class="btn-default" data-toggle="modal" data-target="#addAuthor"><span class="lnr lnr-plus-circle"></span></button>
                                 </div>
+                                @endif
                             </div>
                             <div class="panel-body">
                                 <table class="table table-hover">
@@ -62,10 +73,17 @@
                                         @foreach ($data_penulis as $book)
                                         <tr>
                                             <td>{{$book->penulis}}</td>
+                                            @if(auth()->user()->role == 'admin')
                                             <td>
                                                 <a href="/bookAuthor/{{$book->id}}/edit" class="btn btn-warning btn-sm">Edit</a>
                                                 <a href="/bookAuthor/{{$book->id}}/delete" class="btn btn-danger btn-sm" onClick="return confirm('Apakah yakin data ingin dihapus ?')">Delete</a>
                                             </td>
+                                            @else
+                                            <td>
+                                                <a href="/bookAuthor/{{$book->id}}/edit" class="btn btn-warning btn-sm disabled" role="button" aria-disabled="true">Edit</a>
+                                                <a href="/bookAuthor/{{$book->id}}/delete" class="btn btn-danger btn-sm disabled" role="button" aria-disabled="true" onClick="return confirm('Apakah yakin data ingin dihapus ?')">Delete</a>
+                                            </td>
+                                            @endif
                                         </tr>
                                         @endforeach
                                     </tbody>
@@ -77,7 +95,7 @@
             </div>
         </div>
     </div>
-
+@if(auth()->user()->role == 'admin')
     <div class="modal fade" id="addAuthor" tabindex="-1" aria-labelledby="addAuthorLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -147,4 +165,5 @@
             </div>
         </div>
     </div>
+@endif
 @stop

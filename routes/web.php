@@ -14,14 +14,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('home');
+    return view('/auth/login');
 });
 
 Route::get('/login','AuthController@login')->name('login');
 Route::post('postlogin','AuthController@postlogin');
 Route::get('/logout','AuthController@logout');
 
-Route::group(['middleware'=>'auth'],function(){
+Route::group(['middleware'=>['auth','checkRole:admin']],function(){
 
     Route::get('/dashboard','DashboardController@index');
     Route::get('/book','BookController@index');
@@ -34,6 +34,13 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('/bookAuthor/{id}/edit','BookAuthorController@edit');
     Route::post('/bookAuthor/{id}/update','BookAuthorController@update');
     Route::get('/bookAuthor/{id}/delete','BookAuthorController@delete');
+
+});
+
+
+Route::group(['middleware'=>['auth','checkRole:admin,user']],function(){
+
+    Route::get('/dashboard','DashboardController@index');
 
 });
 
