@@ -60,7 +60,7 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
-# oxy_creative
+# Laravel Project
 
 Untuk melakukan migrate data bisa menggunakan
 php artisan migrate atau import dari file school_database.sql
