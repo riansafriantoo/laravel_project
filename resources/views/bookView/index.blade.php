@@ -58,9 +58,9 @@
             <div class="modal-body">
             <form action="/bookAuthor/create" method="POST">
                 {{csrf_field()}}
-                <div class="form-group">
-                    <label for="exampleFormControlInput1">Nama Penulis</label>
-                    <input name="penulis" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Masukkan nama Penulis">
+                <div class="form-group has-error">
+                    <label for="penulis">Nama Penulis</label>
+                    <input name="penulis" type="text" class="form-control" id="penulis" placeholder="Masukkan nama Penulis">
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary">Submit</button>
@@ -84,20 +84,20 @@
             <form action="/book/create" method="POST">
                 {{csrf_field()}}
                 <div class="form-group">
-                    <label for="exampleFormControlInput1">Judul Buku</label>
-                    <input name="nama" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Judul buku">
+                    <label class='text-danger'></label>
+                    <input name="nama" type="text" class="form-control" id="nama" placeholder="Judul buku">
                 </div>
-                <div class="form-group">
-                    <label for="exampleFormControlInput1">Jenis Buku</label>
-                    <input name="jenis" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Jenis buku">
+                <div class="form-group has-error">
+                    <label for="jenis">Jenis Buku</label>
+                    <input name="jenis" type="text" class="form-control" id="jenis" placeholder="Jenis buku">
                 </div>
-                <div class="form-group">
-                    <label for="exampleFormControlInput1">Tahun Penerbit</label>
-                    <input name="tahun_terbit" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Tahun Penerbit">
+                <div class="form-group has-error">
+                    <label for="tahun_terbit">Tahun Penerbit</label>
+                    <input name="tahun_terbit" type="text" class="form-control" id="tahun_terbit" placeholder="Tahun Penerbit">
                 </div>
-                <div class="form-group">
-                    <label for="exampleFormControlSelect1">Penulis</label>
-                    <select name="penulis_id" class="form-control" id="exampleFormControlSelect1">
+                <div class="form-group has-error">
+                    <label for="penulis_id">Penulis</label>
+                    <select name="penulis_id" class="form-control" id="penulis_id">
                     <option>Nama Penulis</option>
                     @foreach ($data_penulis as $writer)
                     <tr>

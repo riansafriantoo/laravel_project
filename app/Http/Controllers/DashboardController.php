@@ -21,4 +21,5 @@ class DashboardController extends Controller
         ->get();
         return view('dashboard.index',['data_book' => $data_book,'data_penulis' => $data_penulis,'user' => $user]);
     }
+
 }

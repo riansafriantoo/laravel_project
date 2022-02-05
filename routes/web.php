@@ -18,13 +18,18 @@ Route::get('/', function () {
 });
 
 Route::get('/login','AuthController@login')->name('login');
-Route::post('postlogin','AuthController@postlogin');
+Route::get('/register','AuthController@register');
+Route::post('/createUser','AuthController@createUser');
+Route::post('/postlogin','AuthController@postlogin');
 Route::get('/logout','AuthController@logout');
 
 Route::group(['middleware'=>['auth','checkRole:admin']],function(){
 
     Route::get('/dashboard','DashboardController@index');
     Route::get('/book','BookController@index');
+    Route::get('/userList','UserController@index');
+    Route::get('/userList/{id}/profile','UserController@profile');
+    Route::post('/userList/{id}/uploadAvatar','UserController@uploadAvatar');
     Route::post('/book/create','BookController@create');
     Route::get('/book/{id}/edit','BookController@edit');
     Route::get('/book/{id}/delete','BookController@delete');

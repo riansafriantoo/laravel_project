@@ -16,8 +16,16 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','role',
+        'name', 'email', 'password','role','avatar'
     ];
+
+    public function getAvatar(){
+        if(!$this->avatar){
+            return asset('images/default.jpg');
+        }
+        
+        return asset('images/'.$this->avatar);
+    }
 
     /**
      * The attributes that should be hidden for arrays.

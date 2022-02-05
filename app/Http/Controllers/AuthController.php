@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use Auth;
+use Hash;
+use \App\User;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -19,8 +21,31 @@ class AuthController extends Controller
             return redirect('/login');
         }
         // dd($request->all());
-        // var_dump($request->all());
 
+    }
+
+    public function register(){
+        return view('/auth/register');
+    }
+
+    public function createUser(Request $request){
+
+        // $request->validate([
+        //     'name' => 'required|string|max:255',
+        //     'email' => 'required',
+        //     'password' => 'required|string|confirmed',
+        //     'role' => 'required',
+        // ]);
+        
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'role' => $request->role,
+            'password' => Hash::make($request->password),
+        ]);
+
+        // dd($request->all());
+        return redirect('/login');
     }
 
     public function logout(){

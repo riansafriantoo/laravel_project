@@ -20,8 +20,8 @@ class BookAuthorController extends Controller
     }
 
     public function edit($id){
-        $book = \App\BookAuthor::find($id);
-        return view('bookAuthorView/edit',['book'=>$book]);
+        $bookAuthor = \App\BookAuthor::find($id);
+        return view('bookAuthorView/edit',['book'=>$bookAuthor]);
     }
 
     public function update(Request $request,$id){
